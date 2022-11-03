@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.toyboard.toy.mapper.toyboardMapper">
+
+    <select id="getBoardList" resultType="com.toyboard.toy.dto.toyboarddto">
+
+    SELECT id, title, content, read_cnt, register_id, register_time, update_time
+    FROM board
+
+    </select>
+</mapper>
+
