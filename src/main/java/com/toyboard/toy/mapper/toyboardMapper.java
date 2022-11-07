@@ -7,4 +7,5 @@ import com.toyboard.toy.dto.toyboarddto;
 public interface toyboardMapper {
     
     public List<toyboarddto> getBoardList() throws Exception;
+    public void insertData(toyboarddto toyboarddto) throws Exception;
 }

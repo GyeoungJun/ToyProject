@@ -17,4 +17,8 @@ public class toyboardService {
     public List<toyboarddto> getBoardList() throws Exception{
         return toyboardMapper.getBoardList();
     }
+
+    public void insertData(toyboarddto toyboarddto) throws Exception{
+        toyboardMapper.insertData(toyboarddto);
+    }
 }

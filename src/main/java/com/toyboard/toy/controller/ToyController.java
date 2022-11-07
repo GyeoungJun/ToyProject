@@ -1,9 +1,12 @@
 package com.toyboard.toy.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,4 +31,13 @@ public class ToyController {
     public List<toyboarddto> getBoardList() throws Exception{
         return toyboardService.getBoardList();
     }
+
+    @PostMapping("/add")
+    public Map<String, String> add(@RequestBody toyboarddto dto) throws Exception{
+        
+        toyboardService.insertData(dto);
+
+        return Map.of("result", "success");
+    }
+
 }
