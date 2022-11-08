@@ -33,4 +33,12 @@ public class toyboardService {
     public void deleteData(int id) throws Exception{
         toyboardMapper.deleteData(id);
     }
+
+    public int getTotal(toyboarddto toyboarddto) throws Exception{
+        return toyboardMapper.getTotal(toyboarddto);
+    }
+
+    public List<toyboarddto> search(String title) throws Exception{
+        return toyboardMapper.search(title);
+    }
 }

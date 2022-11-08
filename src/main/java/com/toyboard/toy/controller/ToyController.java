@@ -65,4 +65,14 @@ public class ToyController {
         return Map.of("result", "success");
     }
 
+    @GetMapping("/total")
+    public int getTotal(toyboarddto toyboarddto)throws Exception{
+        return toyboardService.getTotal(toyboarddto);
+    }
+
+    @GetMapping("/search")
+    public List<toyboarddto> search(@RequestParam String title)throws Exception{
+        return toyboardService.search(title);
+    }
+
 }

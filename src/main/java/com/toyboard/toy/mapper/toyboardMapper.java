@@ -11,4 +11,7 @@ public interface toyboardMapper {
     public List<toyboarddto> viewData(int id) throws Exception;
     public void updateData(toyboarddto toyboarddto) throws Exception;
     public void deleteData(int id) throws Exception;
+
+    public int getTotal(toyboarddto toyboarddto) throws Exception;
+    public List<toyboarddto> search(String title)throws Exception;
 }

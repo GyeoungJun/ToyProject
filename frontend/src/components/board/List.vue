@@ -1,9 +1,11 @@
 <template>
 	<div>
-		<h2>게시판 리스트</h2>
+		<h2>
+			게시판 리스트({{total}}건)
+		</h2>
 
 		<div class="searchWrap">
-			<input type="text"  @keyup.enter="" /><a href="javascript:;" class="btnSearch btn">검색</a>
+			<input type="text" v-model="search" ref = "search" @keyup.enter="fnSearch" /><a href="javascript:;"  @click="fnSearch" class="btnSearch btn">검색</a>
 		</div>
 		<div class ="listWrap">
 			<table class = "tbList">
@@ -46,13 +48,15 @@ export default {
 			content : '',
 			register_id : '',
 			register_time : '',
-			a : ''
+			a : '',
+			total : '',
+			search : '',
 		}
 	},
 
 	mounted() {
-		this.getList()
-
+		this.getList(),
+		this.getTotal()
 	},
 
 	methods:{
@@ -69,6 +73,16 @@ export default {
 			})
 		}
 
+		,getTotal(){
+			this.$axios.get('/api/total')
+			.then((res)=>{
+                this.total = res.data;
+			})
+			.then((err)=>{
+				console.log(err);
+			})
+		}
+
 		,fnAdd(){
 			this.$router.push("./write");
 		}
@@ -76,6 +90,19 @@ export default {
 		,fnView(id){
 			this.body.id = id;
 			this.$router.push({path:'./view', query : this.body});
+		}
+
+		,fnSearch(){
+			console.log(this.search);
+			this.$axios.get('/api/search?title=' + this.search)
+			.then((res)=>{
+                this.a = res.data;
+				this.total = this.a.length;
+			})
+			.then((err)=>{
+				console.log(err);
+			})
+
 		}
 	}
 }

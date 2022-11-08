@@ -8,7 +8,7 @@
 
     SELECT id, title, content, read_cnt, register_id, register_time, update_time
     FROM board
-
+    
     </select>
 
     <insert id = "insertData" parameterType = "com.toyboard.toy.dto.toyboarddto">
@@ -40,6 +40,20 @@
     WHERE id = #{id}
 
     </delete>
+
+    <select id = "getTotal" resultType = "int">
+        SELECT COUNT(id)
+        FROM board
+    </select>
+
+    <select id="search" resultType="com.toyboard.toy.dto.toyboarddto">
+
+    SELECT id, title, content, read_cnt, register_id, register_time, update_time, count(id)
+    FROM board
+    WHERE title like CONCAT ('%', #{title}, '%')
+
+    </select>
+
 
 </mapper>
 
