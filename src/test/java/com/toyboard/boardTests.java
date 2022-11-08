@@ -1,7 +1,5 @@
 package com.toyboard;
 
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,8 +11,8 @@ import com.toyboard.toy.mapper.toyboardMapper;
 
 import lombok.extern.log4j.Log4j2;
 
-@ContextConfiguration(classes = ToyApplication.class)
 @Log4j2
+@ContextConfiguration(classes = ToyApplication.class)
 @SpringBootTest
 public class boardTests {
     
@@ -34,5 +32,17 @@ public class boardTests {
             .build();
 
         toyboardMapper.insertData(dto);
+    }
+
+    @Test
+    public void testView() throws Exception{
+
+        int id = 3;
+        log.info("dddd");
+        log.info(toyboardMapper.viewData(id));
+        
+        toyboardMapper.viewData(id).forEach(data -> {
+            log.info(data);
+        });
     }
 }

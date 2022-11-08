@@ -21,7 +21,7 @@
 				</tr>
 				<tr v-for = "(item, index) in a" v-bind:key="index">
 					<th scope = "row">{{index+1}}</th>
-					<td class = "txt_left"><a href="javascript:;">{{item.title}}</a></td>
+					<td class = "txt_left"><a href="javascript:;" @click="fnView(`${item.id}`)">{{item.title}}</a></td>
 					<td>{{item.register_id}}</td>
 					<td>{{item.register_time.substring(0,10)}}</td>
 				</tr>
@@ -38,16 +38,17 @@
 <script>
 export default {
     name : 'App',
-    data: () => ({
-		body : '',
-		id : '',
-		title : '',
-		content : '',
-		register_id : '',
-		register_time : '',
-		a : ''
-
-    }),
+	data(){
+		return{
+			body : '',
+			id : '',
+			title : '',
+			content : '',
+			register_id : '',
+			register_time : '',
+			a : ''
+		}
+	},
 
 	mounted() {
 		this.getList()
@@ -57,10 +58,7 @@ export default {
 	methods:{
 		getList() {
 			this.body = {
-				id : this.id,
-				title : this.title,
-				register_id : this.register_id,
-				register_time : this.register_time
+				id : this.id
 			}
 			this.$axios.get('/api/board', {params : this.body})
 			.then((res)=>{
@@ -74,6 +72,11 @@ export default {
 		,fnAdd(){
 			this.$router.push("./write");
 		}
+
+		,fnView(id){
+			this.body.id = id;
+			this.$router.push({path:'./view', query : this.body});
+		}
 	}
 }
 </script>
@@ -82,5 +85,8 @@ export default {
 .searchWrap{border:1px solid #888; border-radius:5px; text-align:center; padding:20px 0; margin-bottom:40px;}
 	.searchWrap input{width:60%; height:36px; border-radius:3px; padding:0 10px; border:1px solid #888;}
 	.searchWrap .btnSearch{display:inline-block; margin-left:10px;}
+	.tbList th{border-top:1px solid #888;}
+	.tbList th, .tbList td{border-bottom:1px solid #eee; padding:5px 0;}
+	.tbList td.txt_left{text-align:left;}
 	.btnRightWrap{text-align:right; margin:10px 0 0 0;}
 </style>

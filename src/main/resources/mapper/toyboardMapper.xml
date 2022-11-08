@@ -16,5 +16,13 @@
     INSERT INTO board (id, title, content, read_cnt, register_id, register_time, update_time)
     values (#{id}, #{title}, #{content}, 0, #{register_id}, now(), now())
     </insert>
+
+    <select id = "viewData" parameterType="int" resultType = "com.toyboard.toy.dto.toyboarddto">
+
+    SELECT *
+    FROM board
+    WHERE id = #{id}
+
+    </select>
 </mapper>
 

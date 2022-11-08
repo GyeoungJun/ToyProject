@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.toyboard.toy.dto.toyboarddto;
 import com.toyboard.toy.service.toyboardService;
 
+import lombok.extern.log4j.Log4j2;
+
 @RestController
 @RequestMapping("/api")
+@Log4j2
 public class ToyController {
 
     @Autowired
@@ -38,6 +41,11 @@ public class ToyController {
         toyboardService.insertData(dto);
 
         return Map.of("result", "success");
+    }
+
+    @GetMapping("/view")
+    public List<toyboarddto> viewData(@RequestParam int id) throws Exception{
+        return toyboardService.viewData(id);
     }
 
 }
