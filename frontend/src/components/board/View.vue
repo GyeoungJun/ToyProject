@@ -26,7 +26,8 @@
 
 		<div class="btnWrap">
 			<a href="javascript:;" @click="fnList" class="btn">목록</a>
-			<a href="javascript:;" @click="fnUpdate" class="btn">수정</a>
+			<a href="javascript:;" @click="fnUpdate" class="btnAdd btn">수정</a>
+			<a v-if="id" href="javascript:;" @click="fnDeleteProc" class="btnDelete btn">삭제</a>
 		</div>	
 	</div>
 </template>
@@ -70,6 +71,23 @@ export default {
 
 		fnUpdate(){
 			this.$router.push({path:'./update', query:this.body});
+		},
+
+		fnDeleteProc(){
+			if(confirm("삭제하시겠습니까?")){
+				this.$axios.delete('http://localhost:8080/api/delete?id=' + this.body.id)
+				.then((res)=>{
+					if(res.data.result == "success") {
+						alert("삭제되었습니다.");
+						this.fnList();
+					} else {
+						alert("실행중 실패했습니다.\n다시 이용해 주세요.");
+					}
+				})
+				.catch((err)=>{
+					console.log(err);
+				})
+			}
 		}
 	}
 }

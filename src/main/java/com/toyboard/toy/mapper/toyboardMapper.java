@@ -10,4 +10,5 @@ public interface toyboardMapper {
     public void insertData(toyboarddto toyboarddto) throws Exception;
     public List<toyboarddto> viewData(int id) throws Exception;
     public void updateData(toyboarddto toyboarddto) throws Exception;
+    public void deleteData(int id) throws Exception;
 }

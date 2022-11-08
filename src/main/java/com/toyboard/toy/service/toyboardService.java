@@ -29,4 +29,8 @@ public class toyboardService {
     public void updateData(toyboarddto toyboarddto) throws Exception{
         toyboardMapper.updateData(toyboarddto);
     }
+
+    public void deleteData(int id) throws Exception{
+        toyboardMapper.deleteData(id);
+    }
 }
