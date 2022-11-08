@@ -26,6 +26,7 @@
 
 		<div class="btnWrap">
 			<a href="javascript:;" @click="fnList" class="btn">목록</a>
+			<a href="javascript:;" @click="fnUpdate" class="btn">수정</a>
 		</div>	
 	</div>
 </template>
@@ -65,6 +66,10 @@ export default {
 		fnList(id){
 			delete this.body.id;
 			this.$router.push({path:'./list', query:this.body})
+		},
+
+		fnUpdate(){
+			this.$router.push({path:'./update', query:this.body});
 		}
 	}
 }

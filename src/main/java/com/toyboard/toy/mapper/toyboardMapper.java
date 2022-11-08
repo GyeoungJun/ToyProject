@@ -9,4 +9,5 @@ public interface toyboardMapper {
     public List<toyboarddto> getBoardList() throws Exception;
     public void insertData(toyboarddto toyboarddto) throws Exception;
     public List<toyboarddto> viewData(int id) throws Exception;
+    public void updateData(toyboarddto toyboarddto) throws Exception;
 }

@@ -25,4 +25,8 @@ public class toyboardService {
     public List<toyboarddto> viewData(int id) throws Exception{
         return toyboardMapper.viewData(id);
     }
+
+    public void updateData(toyboarddto toyboarddto) throws Exception{
+        toyboardMapper.updateData(toyboarddto);
+    }
 }

@@ -48,4 +48,12 @@ public class ToyController {
         return toyboardService.viewData(id);
     }
 
+    @PostMapping("/update")
+    public Map<String, String> updateData(@RequestBody toyboarddto dto) throws Exception{
+        
+        toyboardService.updateData(dto);
+        
+        return Map.of("result", "success");
+    }
+
 }
